@@ -18,6 +18,7 @@ class FieldServiceProvider extends ServiceProvider
     {
         Nova::serving(function (ServingNova $event) {
             Nova::script('nova-table-field', __DIR__ . '/../dist/js/field.js');
+            Nova::style('nova-table-field', __DIR__ . '/../dist/css/entry.css');
         });
 
         $this->translations();

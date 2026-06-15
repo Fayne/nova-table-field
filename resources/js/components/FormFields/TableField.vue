@@ -7,7 +7,7 @@
   >
     <template #field>
       <Table :can-delete="field.canDelete" :edit-mode="!field.readonly">
-        <div class="bg-white overflow-hidden key-value-items">
+        <div class="o1-rounded-lg o1-overflow-hidden o1-bg-white dark:o1-bg-gray-900 key-value-items">
           <TableRow
             v-for="(row, index) in theData"
             :key="row.id"
@@ -20,46 +20,46 @@
           />
         </div>
       </Table>
-      <div v-if="field.canDelete" class="relative mr-12 mt-3 flex">
-        <div v-for="n in numberOfColumns" class="flex flex-grow justify-center">
-          <button
-            class="appearance-none cursor-pointer text-70 hover:text-danger active:outline-none active:shadow-outline focus:outline-none focus:shadow-outline"
+      <div v-if="field.canDelete && !field.readonly" class="o1-relative o1-mr-11 o1-mt-3 o1-flex">
+        <div v-for="n in numberOfColumns" :key="`column-delete-${n}`" class="o1-flex o1-flex-grow o1-justify-center">
+          <Button
+            :title="__('Delete')"
+            icon="trash"
+            state="danger"
+            variant="link"
+            size="small"
             tabindex="-1"
-            title="Delete"
             type="button"
             @click="removeColumn(n)"
-          >
-            <icon type="trash" />
-          </button>
+          />
         </div>
       </div>
-      <div v-if="!field.readonly && field.canAdd" class="mr-12 flex">
-        <button
-          class="btn btn-link dim cursor-pointer rounded-lg mx-auto text-primary mt-3 px-3 rounded-b-lg flex items-center"
-          type="button"
-          @click="addRowAndSelect"
-        >
-          <icon height="24" type="plus" view-box="0 0 24 24" width="24" />
-          <span class="ml-1">{{ __('novaTableField.addRow') }}</span>
-        </button>
-        <button
+      <div
+        v-if="!field.readonly && field.canAdd"
+        class="o1-mr-11 o1-mt-3 o1-flex o1-items-center o1-justify-center o1-gap-4"
+      >
+        <Button leading-icon="plus-circle" variant="link" type="button" @click="addRowAndSelect">
+          {{ __('novaTableField.addRow') }}
+        </Button>
+        <Button
           v-if="numberOfColumns > 0"
-          class="btn btn-link dim cursor-pointer rounded-lg mx-auto text-primary mt-3 px-3 rounded-b-lg flex items-center"
-          tabindex="-1"
+          leading-icon="plus-circle"
+          variant="link"
           type="button"
+          tabindex="-1"
           @click="addColumnAndSelect"
         >
-          <icon height="24" type="plus" view-box="0 0 24 24" width="24" />
-          <span class="ml-1">{{ __('novaTableField.addColumn') }}</span>
-        </button>
+          {{ __('novaTableField.addColumn') }}
+        </Button>
       </div>
-      <div v-if="field.helpText" class="help-text help-text mt-2" v-html="field.helpText"></div>
+      <div v-if="field.helpText" class="help-text o1-mt-2" v-html="field.helpText"></div>
     </template>
   </DefaultField>
 </template>
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova';
+import { Button } from 'laravel-nova-ui';
 import TableRow from './TableRow';
 import autosize from 'autosize';
 import Table from './Table';
@@ -74,7 +74,7 @@ function guid() {
 export default {
   mixins: [HandlesValidationErrors, FormField],
 
-  components: { Table, TableRow },
+  components: { Button, Table, TableRow },
 
   data: () => ({ theData: [] }),
 
