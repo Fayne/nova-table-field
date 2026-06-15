@@ -12,8 +12,8 @@
     "format": "prettier --write 'resources/js/**/*.{css,js,vue}'"
   },
   "devDependencies": {
-    "cross-env": "^5.0.0",
-    "laravel-mix": "^6.0",
+    "cross-env": "^7.0",
+    "laravel-nova-devtool": "file:vendor/laravel/nova-devtool",
     "prettier": "^2.7",
     "resolve-url-loader": "^5.0.0",
     "vue-loader": "^17.0",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "autosize": "^4.0.2",
-    "vue": "^3.0"
+    "vue": "^3.5"
   },
   "overrides": {
     "webpack": "5.98.0"
