@@ -18,7 +18,7 @@ export default {
     defaultValues: {
       type: Object,
       default: () => [],
-    }
+    },
   },
 };
 </script>

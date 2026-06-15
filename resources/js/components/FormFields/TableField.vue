@@ -82,13 +82,11 @@ export default {
     let valuesArray = Array.isArray(this.field.value) ? this.value : JSON.parse(this.field.value);
     if (!Array.isArray(valuesArray) || !valuesArray.length) valuesArray = [];
 
-    if(this.field.defaultValues)
+    if (this.field.defaultValues)
       this.field.defaultValues.forEach((item, index) => {
-        if(!valuesArray[index])
-          valuesArray[index] = item;
+        if (!valuesArray[index]) valuesArray[index] = item;
       });
-    else
-      this.field.defaultValues = [];
+    else this.field.defaultValues = [];
 
     this.theData = _.map(valuesArray, cells => ({
       id: guid(),
